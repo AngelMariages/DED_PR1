@@ -75,9 +75,9 @@ public interface SafetyActivities4Covid19 {
     /**
      * Mètode que permet afegir un usuari en el sistema
      * @pre cert.
-     * @post si el codi d'usuari és nou, els usuaris seran els mateixos més
-     * un nou usuari amb les dades indicades. Si no, les dades del
-     * usuari s'hauran actualitzat amb els nous.
+     * @post Si el codi d'usuari és nou, els usuaris són els mateixos més
+     * un nou usuari amb les dades indicades. Si no, les dades de
+     * l'usuari s'han actualitzat amb els nous.
      *
      * @param userId identificador de l'usuari
      * @param name nom de l'usuari
@@ -93,9 +93,9 @@ public interface SafetyActivities4Covid19 {
      * Mètode que afegeix una organització en el sistema
      *
      * @pre cert.
-     * @post Si el codi d'organització no existeix les organitzacions seran les
+     * @post Si el codi d'organització no existeix les organitzacions, són les
      * mateixes més una nova amb les dades indicades. Si no, les dades de l'organització
-     * s'hauran actualitzat amb els nous.
+     * s'han actualitzat amb els nous.
      *
      * @param organizationId
      * @param name
@@ -108,16 +108,15 @@ public interface SafetyActivities4Covid19 {
      * Mètode que afegeix un nou expedient en el sistema
      *
      * @pre l'activitat i el codi d'expedient no existeixen.
-     * @post els expedients seran els mateixos
-     * més un de nou amb les dades indicades. El nou expedient és el
-     * element del cim d'expedients.
-     * En cas que l'organització, identificada per organizacionId, no existeixi,
-     * s'haurà d'informar de l'error
+     * @post Els expedients són els mateixos
+     * més un de nou amb les dades indicades. El nou expedient és l'element del cim d'expedients.
+     * En cas que l'organització, identificada per organizationId, no existeixi,
+     * s'ha d'informar de l'error
      *
      * @param recordId identificador de l'expedient
      * @param actId identificador de l'activitat cultural
      * @param description la descripció de l'activitat cultural
-     * @param date data en la qual es realitzarà l'activitat cultural
+     * @param date data en la qual és dura a terme l'activitat cultural
      * @param mode tipus d'activitat cultural (ON-LINE o PRESENCIAL)
      * @param num nombre màxim d'assistents
      * @param organizationId identificador de l'organització
@@ -131,11 +130,11 @@ public interface SafetyActivities4Covid19 {
      * @pre cert.
      * @post L'estat de l'element que està en el cim de la pila d'expedients
      * es modifica, el nombre
-     * d'expedients seran els mateixos menys un (el cim) i el nombre d'activitats
-     * seran els mateixos més un, en cas que l'expedient sigui favorable. En cas que
-     * no hi hagi expedients en la pila, s'haurà d'informar de l'error.
+     * d'expedients són els mateixos menys un (el cim) i el nombre d'activitats
+     * són els mateixos més un, en cas que l'expedient sigui favorable. En cas que
+     * no hi hagi expedients en la pila, s'ha d'informar de l'error.
      *
-     * @param status estat de l'espediente
+     * @param status estat de l'expedient
      * @param date data en la qual es realitza la valoració de l'expedient
      * @param description descripció de la valoració de l'expedient
      * @throws NoRecordsException llança una excepció en cas que no existeixin expedients pendents de valorar
@@ -148,9 +147,9 @@ public interface SafetyActivities4Covid19 {
      * Mètode que permet comprar entrades en una activitat cultural
      *
      * @pre cert.
-     * @post El nombre d'entrades d'una activitat cultural seran els mateixos més una unitat.
-     * En cas que l'usuari o l'activitat cultural no existeixi, s'haurà d'informar de
-     * un error. En cas que ja s'hagi superat el màxim de places, s'haurà d'indicar un error.
+     * @post El nombre d'entrades d'una activitat cultural són els mateixos més una unitat.
+     * En cas que l'usuari o l'activitat cultural no existeixi, s'ha d'informar d'un error.
+     * En cas que ja s'hagi superat el màxim de places, s'ha d'indicar un error.
      *
      * @param userId identificador de l'usuari
      * @param actId identificador de l'activitat cultural
@@ -167,8 +166,8 @@ public interface SafetyActivities4Covid19 {
      *
      * @pre cert.
      * @post El cap de la cua indica el seient a assignar i el nombre de tiquets pendents
-     * d'assignar d'una activitat cultural seran els mateixos menys una unitat.  En cas que
-     * l'activitat cultural no existeixi, s'haurà d'informar d'un error.
+     * d'assignar d'una activitat cultural són els mateixos menys una unitat.  En cas que
+     * l'activitat cultural no existeixi, s'ha d'informar d'un error.
      *
      *
      * @param actId identificador de l'activitat
@@ -182,16 +181,16 @@ public interface SafetyActivities4Covid19 {
      * Mètode que afegeix una valoració sobre una activitat cultural per part d'un usuari
      *
      * @pre cert.
-     * @post les valoracions seran les mateixes més una nova amb les dades indicades. En cas que
-     * l'activitat o l'usuari no existeixi, s'haurà d'informar del
-     * error. Si l'usuari no ha participat en l'activitat cultural també es
-     * haurà d'informar de l'error.
+     * @post Les valoracions són les mateixes més una nova amb les dades indicades. En cas que
+     * l'activitat o l'usuari no existeixi, s'ha d'informar de l'error.
+     * Si l'usuari no ha participat en l'activitat cultural,
+     * també s'ha d'informar de l'error.
      *
      * @param actId identificador de l'activitat
      * @param rating valoració de l'activitat
      * @param message missatge associat a l'activitat
      * @param userId identificador de l'activitat
-     * @throws ActivityNotFoundException es llança l'excepció en cas que l'actiivdad no existeixi
+     * @throws ActivityNotFoundException es llança l'excepció en cas que l'activitat no existeixi
      * @throws UserNotFoundException es llança l'excepció en cas que l'usuari no existeixi
      * @throws UserNotInActivityException es llança l'excepció en cas que l'usuari no
      * hagi participat en l'activitat cultural
@@ -204,8 +203,8 @@ public interface SafetyActivities4Covid19 {
      * Mètode que proporciona les valoracions d'una activitat cultural
      *
      * @pre cert.
-     * @post retorna un iterador per recorer les valoracions d'una activitat. En cas
-     * que no existeixi l'activitat o no hi hagi valoracions s'indicarà un error
+     * @post Retorna un iterador per recórrer les valoracions d'una activitat. En cas
+     * que no existeixi l'activitat o no hi hagi valoracions s'indica un error
      *
      * @param actId identificador de l'activitat
      * @return retorna un iterador per recórrer les activitats culturals
@@ -221,7 +220,7 @@ public interface SafetyActivities4Covid19 {
      *
      * @pre cert.
      * @post retorna l'activitat millor valorada. En cas que no existeixi
-     * cap activitat s'haurà d'indicar un error
+     * cap activitat s'ha d'indicar un error
      *
      * @return retorna l'activitat millor valorada
      * @throws NoActivitiesException es llança l'excepció en cas que no existeixi cap activitat
@@ -232,10 +231,11 @@ public interface SafetyActivities4Covid19 {
 
 
     /**
-     * Mètode que proporcina l'usuari més participatiu
+     * Mètode que proporciona l'usuari més participatiu
      * @pre cert.
-     * @post retorna a l'usuari més actiu (major participació en activitats culturals).
-     * En cas que existeixi més d'un usuari amb el mateix nombre de participacions es proporciona aquell que va participar amb anterioritat. En cas que no existeixi cap usuari s'haurà d'indicar un error
+     * @post Retorna a l'usuari més actiu (major participació en activitats culturals).
+     * En cas que existeixi més d'un usuari amb el mateix nombre de participacions es proporciona aquell que
+     * va participar amb anterioritat. En cas que no existeixi cap usuari s'ha d'indicar un error
      * mostActiveUser(): User
      * @return retorna l'usuari més participatiu
      * @throws UserNotFoundException es llança l'excepció en cas que no existeixi cap usuari com activitat
@@ -259,11 +259,11 @@ public interface SafetyActivities4Covid19 {
      * Mètode que proporciona totes les activitats del sistema
      *
      * @pre cert.
-     * @post retorna un iterador per recórrer totes les activitats. En cas
-     * que no existeixin activitats s'haurà d'indicar un error
+     * @post Retorna un iterador per recórrer totes les activitats. En cas
+     * que no existeixin activitats s'ha d'indicar un error
      *
-     * @return retorna un iterador per recorrerr totes les activitats
-     * @throws NoActivitiesException llança una excepció en cas que no hagin activitats
+     * @return retorna un iterador per recórrer totes les activitats
+     * @throws NoActivitiesException llança una excepció en cas que no hi hagi activitats
      */
     public Iterador<Activity> getAllActivities() throws NoActivitiesException;
 
@@ -272,9 +272,9 @@ public interface SafetyActivities4Covid19 {
     /**
      * Mètode que proporciona un iterador amb les activitats creades per l'organització
      *
-     * @pre la rganitzación existeix.
-     * @post retorna un iterador per recórrer les activitats d'una organització. En cas que no existeixin
-     * les activitats s'indicarà un error
+     * @pre l'organització existeix.
+     * @post Retorna un iterador per recórrer les activitats d'una organització. En cas que no existeixin
+     * les activitats s'indica un error
      *
      * @param organizationId identificador de l'organització
      * @return retorna un iterador amb les activitats d'una organització
@@ -285,10 +285,11 @@ public interface SafetyActivities4Covid19 {
 
 
     /**
-     * Mètode que proporciona les activitats a les quals ha assistido un usuari
+     * Mètode que proporciona les activitats a les quals ha assistit un usuari
      *
      * @pre l'usuari existeix.
-     * @post retorna un iterador per recórrer les activitats d'un usuari. En cas que no existeixin activitats s'indicarà un error
+     * @post Retorna un iterador per recórrer les activitats d'un usuari.
+     * En cas que no existeixin activitats s'indica un error.
      *
      * @param userId identificador de l'usuari
      * @return retorna un iterador per recórrer les activitats d'un usuari
@@ -324,13 +325,13 @@ public interface SafetyActivities4Covid19 {
 
     /**
      * Mètode que proporciona el nombre d'usuaris
-     * @return retona el nombre d'usuaris
+     * @return Retorna el nombre d'usuaris
      */
     public int numUsers();
 
     /**
      * Mètode que proporciona el nombre d'organitzacions
-     * @return retona el nombre d'organitzacions
+     * @return Retorna el nombre d'organitzacions
      */
     public int numOrganizations();
 
@@ -363,7 +364,7 @@ public interface SafetyActivities4Covid19 {
     /**
      * Mètode que proporciona el nombre d'activitats d'una organització
      *
-     * @PRE l'organització existeix
+     * @pre l'organització existeix
      *
      * @param organizationId identificador de l'activitat
      * @return retorna el nombre d'activitats de l'organització
