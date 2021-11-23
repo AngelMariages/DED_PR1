@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 import uoc.ded.practica.exceptions.ActivityNotFoundException;
 import uoc.ded.practica.exceptions.LimitExceededException;
@@ -20,6 +21,7 @@ import uoc.ded.practica.model.Ticket;
 import uoc.ded.practica.model.User;
 import uoc.ded.practica.util.Log;
 import uoc.ei.tads.Iterador;
+import uoc.ei.tads.PilaVectorImpl;
 
 public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
     private static final String TAG = "SafetyActivities4Covid19Impl";
@@ -27,41 +29,78 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
     private final Organization[] organizations = new Organization[O];
     private final User[] users = new User[U];
 
+    private final PilaVectorImpl<Record> recordStack = new PilaVectorImpl<>();
+    private int rejectedRecords = 0;
+    private int createdRecords = 0;
+
     public SafetyActivities4Covid19Impl() {
         Log.d(TAG, "constructor");
     }
 
     @Override
     public void addUser(String userId, String name, String surname, LocalDate birthday, boolean covidCertificate) {
+        // Get the user if it exists
         User user = getUser(userId);
+        // Get current number of users
         int numUsers = numUsers();
 
         if (user == null && numUsers < U) {
+            // If it doesn't exist AND we didn't reach the max users, add it
             users[numUsers] = new User(userId, name, surname, birthday, covidCertificate);
         } else if (user != null) {
+            // If it exists, update it's properties
             user.update(name, surname, birthday, covidCertificate);
         }
     }
 
     @Override
     public void addOrganization(int organizationId, String name, String description) {
+        // Get the organization if exists
         Organization organization = getOrganization(organizationId);
 
         if (organization == null) {
+            // If it doesn't exist, add it
             organizations[organizationId] = new Organization(name, description);
         } else {
+            // If it exists, update it's properties
             organization.update(name, description);
         }
     }
 
     @Override
     public void addRecord(String recordId, String actId, String description, Date date, Mode mode, int num, int organizationId) throws OrganizationNotFoundException {
+        // Find the organization or else throw an exception
+        Organization organization = Optional.ofNullable(getOrganization(organizationId))
+                .orElseThrow(() -> new OrganizationNotFoundException(organizationId));
 
+
+        // Add the record to the stack
+        recordStack.empilar(new Record(recordId));
+
+        // Add the count of created records
+        this.createdRecords++;
     }
 
     @Override
     public void updateRecord(Status status, Date date, String description) throws NoRecordsException {
+        if (recordStack.estaBuit()) {
+            throw new NoRecordsException();
+        }
 
+        Record record = recordStack.desempilar();
+
+        // If rejected, we just count it as a rejected record.
+        if (status == Status.DISABLED) {
+            this.rejectedRecords++;
+
+            // Prematurely return because there's nothing more to do.
+            return;
+        }
+
+        // If it's enabled, we will create the activity
+        if (status == Status.ENABLED) {
+            // TODO: Create activity ...
+        }
     }
 
     @Override
@@ -116,9 +155,11 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public User getUser(String userId) {
+        // Iterate over all NonNull users
         for (int i = 0; i < numUsers(); i++) {
             User user = users[i];
 
+            // Get the user matching the userId
             if (user.getUserId().equals(userId)) {
                 return user;
             }
@@ -141,6 +182,9 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
     public int numUsers() {
         int count = 0;
 
+        // Iterate over all the users
+        // and count them.
+        // Stop when there's a Null, because we know that they are ordered and all the rest will be Null.
         for (User user : users) {
             if (user == null) {
                 break;
@@ -158,17 +202,34 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public int numPendingRecords() {
-        return 0;
+        int numPendingRecords = 0;
+
+        // Get the stack iterator
+        Iterador<Record> recordIterador = recordStack.elements();
+
+        // Iterate until there's no next element
+        while (recordIterador.hiHaSeguent()) {
+            Record record = recordIterador.seguent();
+
+            Log.d(TAG, "record", record);
+
+            // If status is PENDING, add it to the count
+            if (record.getStatus() == Status.PENDING) {
+                numPendingRecords++;
+            }
+        }
+
+        return numPendingRecords;
     }
 
     @Override
     public int numRecords() {
-        return 0;
+        return createdRecords++;
     }
 
     @Override
     public int numRejectedRecords() {
-        return 0;
+        return rejectedRecords;
     }
 
     @Override

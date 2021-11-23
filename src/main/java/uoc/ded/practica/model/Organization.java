@@ -9,6 +9,8 @@ public class Organization {
         this.description = description;
     }
 
+    // We don't add setters for everything,
+    // instead we use a method update to have control over the changes.
     public void update(String name, String description) {
         this.name = name;
         this.description = description;
