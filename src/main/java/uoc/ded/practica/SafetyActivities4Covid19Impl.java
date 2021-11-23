@@ -1,7 +1,9 @@
 package uoc.ded.practica;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 import uoc.ded.practica.exceptions.ActivityNotFoundException;
 import uoc.ded.practica.exceptions.LimitExceededException;
@@ -43,11 +45,13 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public void addOrganization(int organizationId, String name, String description) {
-//        if (organizations[organizationId] == null) {
-//            organizations[organizationId] = new Organization(); // TODO: add properties
-//        } else {
-//            organizations[organizationId]
-//        }
+        Organization organization = getOrganization(organizationId);
+
+        if (organization == null) {
+            organizations[organizationId] = new Organization(name, description);
+        } else {
+            organization.update(name, description);
+        }
     }
 
     @Override
@@ -125,7 +129,7 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public Organization getOrganization(int organizationId) {
-        return null;
+        return organizations[organizationId];
     }
 
     @Override
@@ -149,7 +153,7 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public int numOrganizations() {
-        return 0;
+        return Math.toIntExact(Arrays.stream(organizations).filter(Objects::nonNull).count());
     }
 
     @Override

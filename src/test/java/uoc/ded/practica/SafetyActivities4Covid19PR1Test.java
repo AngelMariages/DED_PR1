@@ -76,24 +76,24 @@ public class SafetyActivities4Covid19PR1Test {
     public void testAddOrganization() {
 
         // GIVEN:
-//        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-//        //
-//
-//        this.safetyActivities4Covid19.addOrganization(15, "ORG_VDA", "description VDA" );
-//        Assert.assertEquals("ORG_VDA", this.safetyActivities4Covid19.getOrganization(15).getName());
-//        Assert.assertEquals("description VDA", this.safetyActivities4Covid19.getOrganization(15).getDescription());
-//        Assert.assertEquals(6, this.safetyActivities4Covid19.numOrganizations());
-//
-//        this.safetyActivities4Covid19.addOrganization(17, "ORG_XXX", "description XXX" );
-//        Assert.assertEquals("ORG_XXX", this.safetyActivities4Covid19.getOrganization(17).getName());
-//        Assert.assertEquals("description XXX", this.safetyActivities4Covid19.getOrganization(17).getDescription());
-//        Assert.assertEquals(7, this.safetyActivities4Covid19.numOrganizations());
-//
-//        this.safetyActivities4Covid19.addOrganization(17, "ORG_AWS", "description AW" );
-//        Assert.assertEquals("ORG_AWS", this.safetyActivities4Covid19.getOrganization(17).getName());
-//        Assert.assertEquals("description AW", this.safetyActivities4Covid19.getOrganization(17).getDescription());
-//        Assert.assertEquals(7, this.safetyActivities4Covid19.numOrganizations());
+        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
+        //
+
+        this.safetyActivities4Covid19.addOrganization(15, "ORG_VDA", "description VDA" );
+        Assert.assertEquals("ORG_VDA", this.safetyActivities4Covid19.getOrganization(15).getName());
+        Assert.assertEquals("description VDA", this.safetyActivities4Covid19.getOrganization(15).getDescription());
+        Assert.assertEquals(6, this.safetyActivities4Covid19.numOrganizations());
+
+        this.safetyActivities4Covid19.addOrganization(17, "ORG_XXX", "description XXX" );
+        Assert.assertEquals("ORG_XXX", this.safetyActivities4Covid19.getOrganization(17).getName());
+        Assert.assertEquals("description XXX", this.safetyActivities4Covid19.getOrganization(17).getDescription());
+        Assert.assertEquals(7, this.safetyActivities4Covid19.numOrganizations());
+
+        this.safetyActivities4Covid19.addOrganization(17, "ORG_AWS", "description AW" );
+        Assert.assertEquals("ORG_AWS", this.safetyActivities4Covid19.getOrganization(17).getName());
+        Assert.assertEquals("description AW", this.safetyActivities4Covid19.getOrganization(17).getDescription());
+        Assert.assertEquals(7, this.safetyActivities4Covid19.numOrganizations());
     }
 
 
