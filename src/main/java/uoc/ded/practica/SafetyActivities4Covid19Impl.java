@@ -22,7 +22,8 @@ import uoc.ei.tads.Iterador;
 public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
     private static final String TAG = "SafetyActivities4Covid19Impl";
 
-    private final Organization[] organizations = new Organization[this.O];
+    private final Organization[] organizations = new Organization[O];
+    private final User[] users = new User[U];
 
     public SafetyActivities4Covid19Impl() {
         Log.d(TAG, "constructor");
@@ -30,12 +31,23 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public void addUser(String userId, String name, String surname, LocalDate birthday, boolean covidCertificate) {
+        User user = getUser(userId);
+        int numUsers = numUsers();
 
+        if (user == null && numUsers < U) {
+            users[numUsers] = new User(userId, name, surname, birthday, covidCertificate);
+        } else if (user != null) {
+            user.update(name, surname, birthday, covidCertificate);
+        }
     }
 
     @Override
     public void addOrganization(int organizationId, String name, String description) {
-
+//        if (organizations[organizationId] == null) {
+//            organizations[organizationId] = new Organization(); // TODO: add properties
+//        } else {
+//            organizations[organizationId]
+//        }
     }
 
     @Override
@@ -100,6 +112,14 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public User getUser(String userId) {
+        for (int i = 0; i < numUsers(); i++) {
+            User user = users[i];
+
+            if (user.getUserId().equals(userId)) {
+                return user;
+            }
+        }
+
         return null;
     }
 
@@ -115,7 +135,16 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public int numUsers() {
-        return 0;
+        int count = 0;
+
+        for (User user : users) {
+            if (user == null) {
+                break;
+            }
+            count++;
+        }
+
+        return count;
     }
 
     @Override

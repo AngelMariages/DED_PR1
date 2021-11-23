@@ -11,7 +11,13 @@ public class Log {
         } else {
             StringBuilder buffer = new StringBuilder();
             for (Object obj : params) {
-                buffer.append(obj.toString());
+                if (obj != null) {
+                    buffer.append(obj);
+                } else {
+                    buffer.append("null");
+                }
+
+                buffer.append(", ");
             }
             return buffer.toString();
         }
