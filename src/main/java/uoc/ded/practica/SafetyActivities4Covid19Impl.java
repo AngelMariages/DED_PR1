@@ -20,6 +20,7 @@ import uoc.ded.practica.model.Record;
 import uoc.ded.practica.model.Ticket;
 import uoc.ded.practica.model.User;
 import uoc.ded.practica.util.Log;
+import uoc.ded.practica.util.VectorOrdenat;
 import uoc.ei.tads.Iterador;
 import uoc.ei.tads.PilaVectorImpl;
 
@@ -32,6 +33,8 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
     private final PilaVectorImpl<Record> recordStack = new PilaVectorImpl<>();
     private int rejectedRecords = 0;
     private int createdRecords = 0;
+
+    private final VectorOrdenat<String, Activity> activities = new VectorOrdenat<>(A);
 
     public SafetyActivities4Covid19Impl() {
         Log.d(TAG, "constructor");
@@ -75,14 +78,14 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
 
         // Add the record to the stack
-        recordStack.empilar(new Record(recordId));
+        recordStack.empilar(new Record(recordId, actId, description, date, mode, num, organizationId));
 
         // Add the count of created records
         this.createdRecords++;
     }
 
     @Override
-    public void updateRecord(Status status, Date date, String description) throws NoRecordsException {
+    public void updateRecord(Status status, Date date, String description) throws NoRecordsException, LimitExceededException {
         if (recordStack.estaBuit()) {
             throw new NoRecordsException();
         }
@@ -99,7 +102,14 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
         // If it's enabled, we will create the activity
         if (status == Status.ENABLED) {
-            // TODO: Create activity ...
+            // If full we throw an exception
+            if (activities.estaPle()) {
+                throw new LimitExceededException("Can't add more than " + A + " elements to the dictionary.");
+            }
+
+            Activity activity = record.createActivity();
+
+            activities.afegir(activity.getActId(), activity);
         }
     }
 
@@ -135,12 +145,12 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public double getInfoRejectedRecords() {
-        return 0;
+        return (numRejectedRecords() / (double) numRecords());
     }
 
     @Override
     public Iterador<Activity> getAllActivities() throws NoActivitiesException {
-        return null;
+        return activities.elements();
     }
 
     @Override
@@ -175,7 +185,7 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public Record currentRecord() {
-        return null;
+        return recordStack.cim();
     }
 
     @Override
@@ -224,7 +234,7 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public int numRecords() {
-        return createdRecords++;
+        return createdRecords;
     }
 
     @Override
@@ -234,7 +244,7 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public int numActivities() {
-        return 0;
+        return activities.nombreElems();
     }
 
     @Override

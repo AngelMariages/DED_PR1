@@ -127,8 +127,9 @@ public interface SafetyActivities4Covid19 {
      * @param description descripció de la valoració de l'expedient
      * @throws NoRecordsException llança una excepció en cas que no existeixin
      *                            expedients pendents de valorar
+     * @throws LimitExceededException llança una excepció en cas que s'hagi superat el límit d'activitats
      */
-    public void updateRecord(Status status, Date date, String description) throws NoRecordsException;
+    public void updateRecord(Status status, Date date, String description) throws NoRecordsException, LimitExceededException;
 
     /**
      * Mètode que permet comprar entrades en una activitat cultural

@@ -191,36 +191,36 @@ public class SafetyActivities4Covid19PR1Test {
     public void testAddRecordAndUpdate() throws DEDException {
 
         // GIVEN:
-//        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
-//        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
-//        //
-//
-//        this.testAddRecord();
-//
-//
-//        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-//        Assert.assertEquals(7, this.safetyActivities4Covid19.numRecords() );
-//        Assert.assertEquals(3, this.safetyActivities4Covid19.numPendingRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
-//        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
-//        //
-//        Record record=null;
-//
-//        Assert.assertEquals(0.17, this.safetyActivities4Covid19.getInfoRejectedRecords(),0.03);
-//
-//        this.safetyActivities4Covid19.updateRecord(SafetyActivities4Covid19.Status.DISABLED,
-//                createDate("25-11-2021 23:00:00"), "KO X1");
-//
-//        Assert.assertEquals(2, this.safetyActivities4Covid19.numRejectedRecords() );
-//        Assert.assertEquals(7, this.safetyActivities4Covid19.numRecords() );
-//
-//
-//        Assert.assertEquals(0.28, this.safetyActivities4Covid19.getInfoRejectedRecords(),0.03);
+        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
+        //
+
+        this.testAddRecord();
+
+
+        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
+        Assert.assertEquals(7, this.safetyActivities4Covid19.numRecords() );
+        Assert.assertEquals(3, this.safetyActivities4Covid19.numPendingRecords() );
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
+        //
+        Record record=null;
+
+        Assert.assertEquals(0.17, this.safetyActivities4Covid19.getInfoRejectedRecords(),0.03);
+
+        this.safetyActivities4Covid19.updateRecord(SafetyActivities4Covid19.Status.DISABLED,
+                createDate("25-11-2021 23:00:00"), "KO X1");
+
+        Assert.assertEquals(2, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(7, this.safetyActivities4Covid19.numRecords() );
+
+
+        Assert.assertEquals(0.28, this.safetyActivities4Covid19.getInfoRejectedRecords(),0.03);
 
     }
 
