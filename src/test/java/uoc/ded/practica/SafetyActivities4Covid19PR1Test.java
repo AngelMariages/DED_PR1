@@ -17,7 +17,6 @@ import uoc.ded.practica.model.Rating;
 import uoc.ded.practica.model.Record;
 import uoc.ded.practica.model.Ticket;
 import uoc.ded.practica.util.DateUtils;
-import uoc.ded.practica.util.Log;
 import uoc.ei.tads.Iterador;
 
 public class SafetyActivities4Covid19PR1Test {
