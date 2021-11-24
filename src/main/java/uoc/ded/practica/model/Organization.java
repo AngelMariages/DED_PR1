@@ -40,4 +40,13 @@ public class Organization {
     public void addActivity(Activity activity) {
         orgActivities.afegirAlFinal(activity);
     }
+
+    @Override
+    public String toString() {
+        return "Organization{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", orgActivities=" + orgActivities +
+                '}';
+    }
 }

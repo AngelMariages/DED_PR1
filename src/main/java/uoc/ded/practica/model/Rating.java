@@ -17,15 +17,20 @@ public class Rating {
         return rating;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     public User getUser() {
         return user;
     }
 
     public int getValue() {
         return this.rating.getValue();
+    }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "rating=" + rating +
+                ", message='" + message + '\'' +
+                ", user=" + user +
+                '}';
     }
 }

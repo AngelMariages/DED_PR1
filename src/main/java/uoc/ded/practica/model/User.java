@@ -41,14 +41,6 @@ public class User {
         return surname;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
-    }
-
-    public boolean hasCovidCertificate() {
-        return covidCertificate;
-    }
-
     public void attendActivity(Activity activity) {
         attendedActivities.afegirAlFinal(activity);
     }
@@ -85,5 +77,17 @@ public class User {
         }
 
         return count;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", birthdate=" + birthdate +
+                ", covidCertificate=" + covidCertificate +
+                ", attendedActivities=" + attendedActivities +
+                '}';
     }
 }

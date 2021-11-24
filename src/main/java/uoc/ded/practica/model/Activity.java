@@ -1,6 +1,7 @@
 package uoc.ded.practica.model;
 
 import uoc.ded.practica.SafetyActivities4Covid19;
+import uoc.ded.practica.exceptions.NoRatingsException;
 import uoc.ei.tads.CuaVectorImpl;
 import uoc.ei.tads.Iterador;
 import uoc.ei.tads.LlistaEncadenada;
@@ -78,7 +79,11 @@ public class Activity {
         return this.rating;
     }
 
-    public Iterador<Rating> getRatings() {
+    public Iterador<Rating> getRatings() throws NoRatingsException {
+        if (this.ratingLinkedList.estaBuit()) {
+            throw new NoRatingsException("There are no ratings for activity " + actId);
+        }
+
         return this.ratingLinkedList.elements();
     }
 

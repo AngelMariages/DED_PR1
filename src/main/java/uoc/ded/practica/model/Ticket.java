@@ -19,4 +19,12 @@ public class Ticket {
     public int getSeat() {
         return seat;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "user=" + user +
+                ", seat=" + seat +
+                '}';
+    }
 }

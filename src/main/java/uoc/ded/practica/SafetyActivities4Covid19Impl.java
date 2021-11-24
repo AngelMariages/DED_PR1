@@ -26,8 +26,6 @@ import uoc.ei.tads.Iterador;
 import uoc.ei.tads.PilaVectorImpl;
 
 public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
-    private static final String TAG = "SafetyActivities4Covid19Impl";
-
     private final Organization[] organizations = new Organization[O];
     private final User[] users = new User[U];
 

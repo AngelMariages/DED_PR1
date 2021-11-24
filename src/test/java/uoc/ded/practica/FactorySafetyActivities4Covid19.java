@@ -1,7 +1,6 @@
 package uoc.ded.practica;
 
 
-import org.junit.Assert;
 import uoc.ded.practica.model.Ticket;
 import uoc.ded.practica.util.DateUtils;
 
