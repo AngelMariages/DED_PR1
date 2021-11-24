@@ -80,17 +80,17 @@ public class SafetyActivities4Covid19PR1Test {
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
         //
 
-        this.safetyActivities4Covid19.addOrganization(15, "ORG_VDA", "description VDA" );
+        this.safetyActivities4Covid19.addOrganization(15, "ORG_VDA", "description VDA");
         Assert.assertEquals("ORG_VDA", this.safetyActivities4Covid19.getOrganization(15).getName());
         Assert.assertEquals("description VDA", this.safetyActivities4Covid19.getOrganization(15).getDescription());
         Assert.assertEquals(6, this.safetyActivities4Covid19.numOrganizations());
 
-        this.safetyActivities4Covid19.addOrganization(17, "ORG_XXX", "description XXX" );
+        this.safetyActivities4Covid19.addOrganization(17, "ORG_XXX", "description XXX");
         Assert.assertEquals("ORG_XXX", this.safetyActivities4Covid19.getOrganization(17).getName());
         Assert.assertEquals("description XXX", this.safetyActivities4Covid19.getOrganization(17).getDescription());
         Assert.assertEquals(7, this.safetyActivities4Covid19.numOrganizations());
 
-        this.safetyActivities4Covid19.addOrganization(17, "ORG_AWS", "description AW" );
+        this.safetyActivities4Covid19.addOrganization(17, "ORG_AWS", "description AW");
         Assert.assertEquals("ORG_AWS", this.safetyActivities4Covid19.getOrganization(17).getName());
         Assert.assertEquals("description AW", this.safetyActivities4Covid19.getOrganization(17).getDescription());
         Assert.assertEquals(7, this.safetyActivities4Covid19.numOrganizations());
@@ -100,13 +100,13 @@ public class SafetyActivities4Covid19PR1Test {
     /**
      * *feature*: (sobre la qual fem @Test): addRecord del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
-     *
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
+     * <p>
      * *scenario*:
      * - S'afegeix un nou expedient en el sistema
      * - S'afegeix un segon expedient en el sistema
@@ -116,31 +116,31 @@ public class SafetyActivities4Covid19PR1Test {
         // GIVEN:
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         //
-        Record record=null;
+        Record record = null;
 
-        this.safetyActivities4Covid19.addRecord("XXX-001", "ACT-010", "description ACT-010" ,
+        this.safetyActivities4Covid19.addRecord("XXX-001", "ACT-010", "description ACT-010",
                 createDate("22-11-2021 23:00:00"), SafetyActivities4Covid19.Mode.FACE2FACE, 100, 10);
 
-        Assert.assertEquals(2, this.safetyActivities4Covid19.numPendingRecords() );
+        Assert.assertEquals(2, this.safetyActivities4Covid19.numPendingRecords());
 
         record = this.safetyActivities4Covid19.currentRecord();
-        Assert.assertEquals("XXX-001", record.getRecordId() );
-        Assert.assertEquals(SafetyActivities4Covid19.Status.PENDING, record.getStatus() );
+        Assert.assertEquals("XXX-001", record.getRecordId());
+        Assert.assertEquals(SafetyActivities4Covid19.Status.PENDING, record.getStatus());
 
 
         this.safetyActivities4Covid19.addRecord("XXX-002", "ACT-011", "description ACT-011",
                 createDate("25-11-2021 23:00:00"), SafetyActivities4Covid19.Mode.FACE2FACE, 100, 10);
 
-        Assert.assertEquals(3, this.safetyActivities4Covid19.numPendingRecords() );
+        Assert.assertEquals(3, this.safetyActivities4Covid19.numPendingRecords());
 
         record = this.safetyActivities4Covid19.currentRecord();
-        Assert.assertEquals("XXX-002", record.getRecordId() );
-        Assert.assertEquals(SafetyActivities4Covid19.Status.PENDING, record.getStatus() );
+        Assert.assertEquals("XXX-002", record.getRecordId());
+        Assert.assertEquals(SafetyActivities4Covid19.Status.PENDING, record.getStatus());
 
     }
 
@@ -148,12 +148,12 @@ public class SafetyActivities4Covid19PR1Test {
     /**
      * *feature*: (sobre la qual fem @Test): addRecord del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
      * *scenario*:
      * - S'afegeix un nou expedient en el sistema sobre una organització inexistent
      */
@@ -162,9 +162,9 @@ public class SafetyActivities4Covid19PR1Test {
         // GIVEN:
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         //
 
@@ -177,15 +177,15 @@ public class SafetyActivities4Covid19PR1Test {
     /**
      * *feature*: (sobre la qual fem @Test): addRecord & update del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
-     *
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
+     * <p>
      * *scenario*:
-     *  - S'afegeixen "records" del test testAddRecord
+     * - S'afegeixen "records" del test testAddRecord
      */
     @Test
     public void testAddRecordAndUpdate() throws DEDException {
@@ -193,9 +193,9 @@ public class SafetyActivities4Covid19PR1Test {
         // GIVEN:
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         //
 
@@ -204,23 +204,23 @@ public class SafetyActivities4Covid19PR1Test {
 
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(7, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(3, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(7, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(3, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         //
-        Record record=null;
+        Record record = null;
 
-        Assert.assertEquals(0.17, this.safetyActivities4Covid19.getInfoRejectedRecords(),0.03);
+        Assert.assertEquals(0.17, this.safetyActivities4Covid19.getInfoRejectedRecords(), 0.03);
 
         this.safetyActivities4Covid19.updateRecord(SafetyActivities4Covid19.Status.DISABLED,
                 createDate("25-11-2021 23:00:00"), "KO X1");
 
-        Assert.assertEquals(2, this.safetyActivities4Covid19.numRejectedRecords() );
-        Assert.assertEquals(7, this.safetyActivities4Covid19.numRecords() );
+        Assert.assertEquals(2, this.safetyActivities4Covid19.numRejectedRecords());
+        Assert.assertEquals(7, this.safetyActivities4Covid19.numRecords());
 
 
-        Assert.assertEquals(0.28, this.safetyActivities4Covid19.getInfoRejectedRecords(),0.03);
+        Assert.assertEquals(0.28, this.safetyActivities4Covid19.getInfoRejectedRecords(), 0.03);
 
     }
 
@@ -228,24 +228,24 @@ public class SafetyActivities4Covid19PR1Test {
     /**
      * *feature*: (sobre la qual fem @Test): getActivitiesByOrganization del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
-     *
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
+     * <p>
      * *scenario*:
-     *  - Es consulten les activitats d'una organització
+     * - Es consulten les activitats d'una organització
      */
     @Test
     public void testGetActivitiesByOrganization() throws DEDException {
         // GIVEN:
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         //
 
@@ -263,24 +263,24 @@ public class SafetyActivities4Covid19PR1Test {
     /**
      * *feature*: (sobre la qual fem @Test): getActivitiesByOrganization del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
-     *
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
+     * <p>
      * *scenario*:
-     *  - Es consulten les activitats d'una organització que NO té activitats (3)
+     * - Es consulten les activitats d'una organització que NO té activitats (3)
      */
     @Test(expected = NoActivitiesException.class)
     public void testGetActivitiesByOrganizationAndNOActiviesException() throws DEDException {
         // GIVEN:
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         //
         Iterador<Activity> it = this.safetyActivities4Covid19.getActivitiesByOrganization(3);
@@ -290,24 +290,24 @@ public class SafetyActivities4Covid19PR1Test {
     /**
      * *feature*: (sobre la qual fem @Test): getAllActivities del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
-     *
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
+     * <p>
      * *scenario*:
-     *  - Es consulten totes les activitats
+     * - Es consulten totes les activitats
      */
     @Test
     public void testGetAllActivities() throws DEDException {
         // GIVEN:
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         //
         Iterador<Activity> it = this.safetyActivities4Covid19.getAllActivities();
@@ -326,24 +326,24 @@ public class SafetyActivities4Covid19PR1Test {
     /**
      * *feature*: (sobre la qual fem @Test): getAllActivitiesByUser del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
-     *
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
+     * <p>
      * *scenario*:
-     *  - Es consulten les activitats d'un usuari i no existeix cap
+     * - Es consulten les activitats d'un usuari i no existeix cap
      */
     @Test(expected = NoActivitiesException.class)
     public void testGetAllActivitiesByUserAndNoActivitiesException() throws DEDException {
         // GIVEN:
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         //
         Iterador<Activity> it = this.safetyActivities4Covid19.getActivitiesByUser("idUser9");
@@ -353,122 +353,118 @@ public class SafetyActivities4Covid19PR1Test {
     /**
      * *feature*: (sobre la qual fem @Test): addRating & getRatings del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
-     *
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
+     * <p>
      * *scenario*:
-     *  - S'afegeixen valoracions sobre un parell d'activitats
-     *  culturals que van alternant ser la millor activitat cultural
+     * - S'afegeixen valoracions sobre un parell d'activitats
+     * culturals que van alternant ser la millor activitat cultural
      */
     @Test
     public void testAddRating() throws DEDException {
         // GIVEN:
-//        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
-//        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
-//        //
-//
-//        Activity activity1105 = this.safetyActivities4Covid19.getActivity("ACT-1105");
-//
-//        Assert.assertEquals(0, activity1105.rating(),0);
-//
-//        this.safetyActivities4Covid19.addRating("ACT-1105",
-//                SafetyActivities4Covid19.Rating.FIVE, "Very good", "idUser1");
-//
-//        Assert.assertEquals(5, activity1105.rating(),0);
-//
-//        this.safetyActivities4Covid19.addRating("ACT-1105",
-//                SafetyActivities4Covid19.Rating.FOUR, "Good", "idUser2");
-//
-//        Assert.assertEquals(4.5, activity1105.rating(),0);
-//
-//        this.safetyActivities4Covid19.addRating("ACT-1105",
-//                SafetyActivities4Covid19.Rating.TWO, "CHIPI - CHAPI", "idUser3");
-//        Assert.assertEquals(3.6, activity1105.rating(),0.09);
-//
-//        Activity bestActivity = this.safetyActivities4Covid19.bestActivity();
-//        Assert.assertEquals("ACT-1105", bestActivity.getActId());
-//        //
-//        //
-//
-//        Activity activity1102 = this.safetyActivities4Covid19.getActivity("ACT-1102");
-//
-//        this.safetyActivities4Covid19.addRating("ACT-1102",
-//                SafetyActivities4Covid19.Rating.FOUR, "Good!!!", "idUser4");
-//        Assert.assertEquals(4, activity1102.rating(),0);
-//        Assert.assertEquals(3.6, activity1105.rating(),0.09);
-//
-//        bestActivity = this.safetyActivities4Covid19.bestActivity();
-//        Assert.assertEquals("ACT-1102", bestActivity.getActId());
-//
-//
-//
-//        this.safetyActivities4Covid19.addRating("ACT-1102",
-//                SafetyActivities4Covid19.Rating.ONE, "Bad!!!", "idUser5");
-//        Assert.assertEquals(2.5, activity1102.rating(),0.09);
-//        Assert.assertEquals(3.6, activity1105.rating(),0.09);
-//
-//        bestActivity = this.safetyActivities4Covid19.bestActivity();
-//        Assert.assertEquals("ACT-1105", bestActivity.getActId());
-//
-//        this.safetyActivities4Covid19.addRating("ACT-1102",
-//                SafetyActivities4Covid19.Rating.FOUR, "Good!!!", "idUser6");
-//        Assert.assertEquals(3, activity1102.rating(),0.09);
-//        Assert.assertEquals(3.6, activity1105.rating(),0.09);
-//
-//        bestActivity = this.safetyActivities4Covid19.bestActivity();
-//        Assert.assertEquals("ACT-1105", bestActivity.getActId());
-//
-//        this.safetyActivities4Covid19.addRating("ACT-1102",
-//                SafetyActivities4Covid19.Rating.FIVE, "Very Good!!!", "idUser7");
-//        Assert.assertEquals(3.5, activity1102.rating(),0);
-//        Assert.assertEquals(3.6, activity1105.rating(),0.09);
-//
-//        bestActivity = this.safetyActivities4Covid19.bestActivity();
-//        Assert.assertEquals("ACT-1105", bestActivity.getActId());
-//
-//        this.safetyActivities4Covid19.addRating("ACT-1102",
-//                SafetyActivities4Covid19.Rating.FIVE, "Very Good!!!", "idUser7");
-//        Assert.assertEquals(3.8, activity1102.rating(),0);
-//        Assert.assertEquals(3.6, activity1105.rating(),0.09);
-//
-//        bestActivity = this.safetyActivities4Covid19.bestActivity();
-//        Assert.assertEquals("ACT-1102", bestActivity.getActId());
-//
-//
-//        Iterador<Rating> it = this.safetyActivities4Covid19.getRatings("ACT-1102");
-//        Rating rating = it.seguent();
-//        Assert.assertEquals(SafetyActivities4Covid19.Rating.FOUR, rating.getRating());
-//        Assert.assertEquals("idUser4", rating.getUser().getId());
+        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
+        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
+        //
 
+        Activity activity1105 = this.safetyActivities4Covid19.getActivity("ACT-1105");
+
+        Assert.assertEquals(0, activity1105.rating(), 0);
+
+        this.safetyActivities4Covid19.addRating("ACT-1105",
+                SafetyActivities4Covid19.Rating.FIVE, "Very good", "idUser1");
+
+        Assert.assertEquals(5, activity1105.rating(), 0);
+
+        this.safetyActivities4Covid19.addRating("ACT-1105",
+                SafetyActivities4Covid19.Rating.FOUR, "Good", "idUser2");
+
+        Assert.assertEquals(4.5, activity1105.rating(), 0);
+
+        this.safetyActivities4Covid19.addRating("ACT-1105",
+                SafetyActivities4Covid19.Rating.TWO, "CHIPI - CHAPI", "idUser3");
+        Assert.assertEquals(3.6, activity1105.rating(), 0.09);
+
+        Activity bestActivity = this.safetyActivities4Covid19.bestActivity();
+        Assert.assertEquals("ACT-1105", bestActivity.getActId());
+        //
+        //
+
+        Activity activity1102 = this.safetyActivities4Covid19.getActivity("ACT-1102");
+
+        this.safetyActivities4Covid19.addRating("ACT-1102",
+                SafetyActivities4Covid19.Rating.FOUR, "Good!!!", "idUser4");
+        Assert.assertEquals(4, activity1102.rating(), 0);
+        Assert.assertEquals(3.6, activity1105.rating(), 0.09);
+
+        bestActivity = this.safetyActivities4Covid19.bestActivity();
+        Assert.assertEquals("ACT-1102", bestActivity.getActId());
+
+
+        this.safetyActivities4Covid19.addRating("ACT-1102",
+                SafetyActivities4Covid19.Rating.ONE, "Bad!!!", "idUser5");
+        Assert.assertEquals(2.5, activity1102.rating(), 0.09);
+        Assert.assertEquals(3.6, activity1105.rating(), 0.09);
+
+        bestActivity = this.safetyActivities4Covid19.bestActivity();
+        Assert.assertEquals("ACT-1105", bestActivity.getActId());
+
+        this.safetyActivities4Covid19.addRating("ACT-1102",
+                SafetyActivities4Covid19.Rating.FOUR, "Good!!!", "idUser6");
+        Assert.assertEquals(3, activity1102.rating(), 0.09);
+        Assert.assertEquals(3.6, activity1105.rating(), 0.09);
+
+        bestActivity = this.safetyActivities4Covid19.bestActivity();
+        Assert.assertEquals("ACT-1105", bestActivity.getActId());
+
+        this.safetyActivities4Covid19.addRating("ACT-1102",
+                SafetyActivities4Covid19.Rating.FIVE, "Very Good!!!", "idUser7");
+        Assert.assertEquals(3.5, activity1102.rating(), 0);
+        Assert.assertEquals(3.6, activity1105.rating(), 0.09);
+
+        bestActivity = this.safetyActivities4Covid19.bestActivity();
+        Assert.assertEquals("ACT-1105", bestActivity.getActId());
+
+        this.safetyActivities4Covid19.addRating("ACT-1102",
+                SafetyActivities4Covid19.Rating.FIVE, "Very Good!!!", "idUser7");
+        Assert.assertEquals(3.8, activity1102.rating(), 0);
+        Assert.assertEquals(3.6, activity1105.rating(), 0.09);
+
+        bestActivity = this.safetyActivities4Covid19.bestActivity();
+        Assert.assertEquals("ACT-1102", bestActivity.getActId());
+
+
+        Iterador<Rating> it = this.safetyActivities4Covid19.getRatings("ACT-1102");
+        Rating rating = it.seguent();
+        Assert.assertEquals(SafetyActivities4Covid19.Rating.FOUR, rating.getRating());
+        Assert.assertEquals("idUser4", rating.getUser().getId());
 
 
     }
 
 
-
-
     /**
      * *feature*: (sobre la qual fem @Test): createTicket & assignSeat del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
-     *   - 4 entrades comprades sobre una activitat
-     *   - 4 seients assignats
-     *
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
+     * - 4 entrades comprades sobre una activitat
+     * - 4 seients assignats
+     * <p>
      * *scenario*:
-     *  - Es compra 1 entrada i s'assigna el seu seient
+     * - Es compra 1 entrada i s'assigna el seu seient
      */
     @Test
     public void testCreateTicketAndAssign() throws DEDException {
@@ -476,9 +472,9 @@ public class SafetyActivities4Covid19PR1Test {
         // GIVEN:
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         Assert.assertEquals(3, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
         //
@@ -513,17 +509,17 @@ public class SafetyActivities4Covid19PR1Test {
     /**
      * *feature*: (sobre la qual fem @Test): createTicket del TAD SafetyActivities4Covid19
      * *given*: Hi ha:
-     *   - 10 usuaris en el sistema
-     *   - 5 organitzacions
-     *   - 5 Expedients en el sistema
-     *   - 1 Expedient pendent de validar
-     *   - 1 Expedient rebutjat
-     *   - 3 Activitats
-     *   - 4 entrades comprades sobre una activitat
-     *   - 4 seients assignats
-     *
+     * - 10 usuaris en el sistema
+     * - 5 organitzacions
+     * - 5 Expedients en el sistema
+     * - 1 Expedient pendent de validar
+     * - 1 Expedient rebutjat
+     * - 3 Activitats
+     * - 4 entrades comprades sobre una activitat
+     * - 4 seients assignats
+     * <p>
      * *scenario*:
-     *  - Es compren més de 50 entrades i s'excedeix el nombre màxim d'entrades
+     * - Es compren més de 50 entrades i s'excedeix el nombre màxim d'entrades
      */
     @Test(expected = LimitExceededException.class)
     public void testCreateTicketAndLimitExceededException() throws DEDException {
@@ -531,9 +527,9 @@ public class SafetyActivities4Covid19PR1Test {
         // GIVEN:
         Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
         Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords());
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords());
         Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
         Assert.assertEquals(3, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
         //
@@ -542,7 +538,7 @@ public class SafetyActivities4Covid19PR1Test {
         Assert.assertEquals(2, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
 
         this.safetyActivities4Covid19.createTicket("idUser8", "ACT-1102");
-        Assert.assertEquals(1,this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
+        Assert.assertEquals(1, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
 
         this.safetyActivities4Covid19.createTicket("idUser9", "ACT-1102");
         Assert.assertEquals(0, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));

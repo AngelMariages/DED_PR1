@@ -1,5 +1,6 @@
 package uoc.ded.practica.model;
 
+import uoc.ded.practica.exceptions.NoActivitiesException;
 import uoc.ei.tads.Iterador;
 import uoc.ei.tads.LlistaEncadenada;
 
@@ -52,8 +53,26 @@ public class User {
         attendedActivities.afegirAlFinal(activity);
     }
 
-    public Iterador<Activity> getAttendedActivities() {
+    public Iterador<Activity> getAttendedActivities() throws NoActivitiesException {
+        if (attendedActivities.estaBuit()) {
+            throw new NoActivitiesException("There are no attended activities for user " + userId);
+        }
+
         return attendedActivities.elements();
+    }
+
+    public boolean hasAttendedActivity(String actId) {
+        Iterador<Activity> elements = attendedActivities.elements();
+
+        while (elements.hiHaSeguent()) {
+            Activity activity = elements.seguent();
+
+            if (activity.getActId().equals(actId)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public int numAttendedActivities() {

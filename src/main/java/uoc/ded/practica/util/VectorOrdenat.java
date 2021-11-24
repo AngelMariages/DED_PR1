@@ -1,18 +1,24 @@
 package uoc.ded.practica.util;
 
-import uoc.ei.tads.ClauValor;
 import uoc.ei.tads.ContenidorAfitat;
-import uoc.ei.tads.DiccionariVectorImpl;
+import uoc.ei.tads.Iterador;
+import uoc.ei.tads.IteradorVectorImpl;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class VectorOrdenat<Clau extends String, Element> extends DiccionariVectorImpl<Clau, Element> implements ContenidorAfitat<Element> {
+public class VectorOrdenat<Element> implements ContenidorAfitat<Element> {
     private final int elementsMaxims;
+    private final Comparator<Element> comparator;
+    private final Element[] elements;
+    private int n = 0;
 
-    public VectorOrdenat(int elementsMaxims) {
-        super(elementsMaxims);
+    @SuppressWarnings("unchecked")
+    public VectorOrdenat(int elementsMaxims, Comparator<Element> comparator) {
         this.elementsMaxims = elementsMaxims;
+        this.comparator = comparator;
+
+        this.elements = (Element[]) new Object[elementsMaxims];
     }
 
     @Override
@@ -20,76 +26,70 @@ public class VectorOrdenat<Clau extends String, Element> extends DiccionariVecto
         return nombreElems() >= elementsMaxims;
     }
 
-    @Override
-    public Element consultar(Clau clau) {
-        int i = binarySearch(clau, 0, n);
 
-        if (i == -1) {
-            return null;
+    @Override
+    public int nombreElems() {
+        return n;
+    }
+
+    @Override
+    public Iterador<Element> elements() {
+        return new IteradorVectorImpl<>(elements, n, 0);
+    }
+
+    @Override
+    public boolean estaBuit() {
+        return false;
+    }
+
+    public void addOrUpdate(Element element) {
+        int i = binarySearch(element, 0, nombreElems());
+
+        if (i != -1) {
+            elements[i] = element;
+        } else {
+            elements[n] = element;
+            n++;
         }
 
-        return this.diccionari[i].getValor();
-    }
-
-    @Override
-    public boolean hiEs(Clau clau) {
-        return consultar(clau) != null;
-    }
-
-    @Override
-    public void afegir(Clau clau, Element obj) {
-        super.afegir(clau, obj);
-
         ordenar();
-    }
-
-    @Override
-    public Element esborrar(Clau clau) {
-        int i = binarySearch(clau, 0, n);
-
-        ClauValor<Clau, Element> clauElementClauValor = diccionari[i];
-        Element element = clauElementClauValor.getValor();
-
-        // We replace the last value with the toBeRemoved one
-        // and then we remove the last element in the list
-        ClauValor<Clau, Element> clauElementClauValor1 = diccionari[n-1];
-        diccionari[i] = clauElementClauValor1;
-        diccionari[n-1] = null;
-        n--;
-
-        ordenar();
-
-        return element;
     }
 
     private void ordenar() {
         // There's no need to order if only 1 element
         if (nombreElems() > 1) {
             // We sort only the values that are inserted
-            Arrays.sort(
-                    diccionari,
-                    0,
-                    n,
-                    Comparator.comparing(ClauValor::getClau)
-            );
+            Arrays.sort(elements, 0, nombreElems(), comparator);
         }
     }
 
-    private int binarySearch(Clau key, int left, int right) {
-        if (right < 0) {
+    private int binarySearch(Element toSearch, int left, int right) {
+        if (right < left) {
             return -1;
         }
 
         int mid = left + (right - left) / 2;
 
-        if (diccionari[mid].getClau().equals(key)) {
+        Element currentElement = elements[mid];
+
+        if (currentElement == null) {
+            return -1;
+        }
+
+        int compare = comparator.compare(currentElement, toSearch);
+
+        if (compare == 0) {
             return mid;
         }
 
-        if (diccionari[mid].getClau().compareTo(key) > 0) {
-            return binarySearch(key, left, mid - 1);
-        } else {
-            return binarySearch(key, mid + 1, right);
+        if (compare > 0) {
+            return binarySearch(toSearch, left, mid - 1);
         }
+
+        return binarySearch(toSearch, mid + 1, right);
+    }
+
+    public Element top() {
+        return n > 0 ? elements[n - 1] : null;
     }
 }
