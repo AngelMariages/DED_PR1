@@ -24,6 +24,10 @@ public class VectorOrdenat<Clau extends String, Element> extends DiccionariVecto
     public Element consultar(Clau clau) {
         int i = binarySearch(clau, 0, n);
 
+        if (i == -1) {
+            return null;
+        }
+
         return this.diccionari[i].getValor();
     }
 

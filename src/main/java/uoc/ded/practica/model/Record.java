@@ -36,6 +36,10 @@ public class Record {
         return status;
     }
 
+    public int getOrganizationId() {
+        return organizationId;
+    }
+
     public Activity createActivity() {
         return new Activity(this.actId, this.description, this.date, this.mode, this.places, this.organizationId);
     }

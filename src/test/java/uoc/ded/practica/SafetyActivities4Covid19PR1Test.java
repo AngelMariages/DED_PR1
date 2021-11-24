@@ -17,6 +17,7 @@ import uoc.ded.practica.model.Rating;
 import uoc.ded.practica.model.Record;
 import uoc.ded.practica.model.Ticket;
 import uoc.ded.practica.util.DateUtils;
+import uoc.ded.practica.util.Log;
 import uoc.ei.tads.Iterador;
 
 public class SafetyActivities4Covid19PR1Test {
@@ -241,23 +242,23 @@ public class SafetyActivities4Covid19PR1Test {
     @Test
     public void testGetActivitiesByOrganization() throws DEDException {
         // GIVEN:
-//        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
-//        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
-//        //
-//
-//
-//        Assert.assertEquals(2, this.safetyActivities4Covid19.numActivitiesByOrganization(10));
-//
-//        Iterador<Activity> it = this.safetyActivities4Covid19.getActivitiesByOrganization(10);
-//        Activity activity1 = it.seguent();
-//        Assert.assertEquals("ACT-1104", activity1.getActId());
-//
-//        Activity activity2 = it.seguent();
-//        Assert.assertEquals("ACT-1102", activity2.getActId());
+        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
+        //
+
+
+        Assert.assertEquals(2, this.safetyActivities4Covid19.numActivitiesByOrganization(10));
+
+        Iterador<Activity> it = this.safetyActivities4Covid19.getActivitiesByOrganization(10);
+        Activity activity1 = it.seguent();
+        Assert.assertEquals("ACT-1104", activity1.getActId());
+
+        Activity activity2 = it.seguent();
+        Assert.assertEquals("ACT-1102", activity2.getActId());
     }
 
     /**
@@ -303,23 +304,23 @@ public class SafetyActivities4Covid19PR1Test {
     @Test
     public void testGetAllActivities() throws DEDException {
         // GIVEN:
-//        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
-//        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
-//        //
-//        Iterador<Activity> it = this.safetyActivities4Covid19.getAllActivities();
-//
-//        Activity activity1 = it.seguent();
-//        Assert.assertEquals("ACT-1102", activity1.getActId());
-//
-//        Activity activity2 = it.seguent();
-//        Assert.assertEquals("ACT-1104", activity2.getActId());
-//
-//        Activity activity3 = it.seguent();
-//        Assert.assertEquals("ACT-1105", activity3.getActId());
+        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
+        //
+        Iterador<Activity> it = this.safetyActivities4Covid19.getAllActivities();
+
+        Activity activity1 = it.seguent();
+        Assert.assertEquals("ACT-1102", activity1.getActId());
+
+        Activity activity2 = it.seguent();
+        Assert.assertEquals("ACT-1104", activity2.getActId());
+
+        Activity activity3 = it.seguent();
+        Assert.assertEquals("ACT-1105", activity3.getActId());
 
     }
 
@@ -474,37 +475,37 @@ public class SafetyActivities4Covid19PR1Test {
     public void testCreateTicketAndAssign() throws DEDException {
 
         // GIVEN:
-//        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
-//        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
-//        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
-//        Assert.assertEquals(3, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
-//        //
-//
-//        this.safetyActivities4Covid19.createTicket("idUser8", "ACT-1102");
-//        Assert.assertEquals(2, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
-//
-//        this.safetyActivities4Covid19.createTicket("idUser9", "ACT-1102");
-//        Assert.assertEquals(1, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
-//
-//        this.safetyActivities4Covid19.createTicket("idUser10", "ACT-1102");
-//        Assert.assertEquals(0, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
-//
-//        Ticket Ticket5 = this.safetyActivities4Covid19.assignSeat("ACT-1102");
-//
-//        Assert.assertEquals(5, Ticket5.getSeat());
-//        Assert.assertEquals("idUser8", Ticket5.getUser().getId());
-//
-//
-//        Ticket Ticket6 = this.safetyActivities4Covid19.assignSeat("ACT-1102");
-//        Assert.assertEquals(6, Ticket6.getSeat());
-//        Assert.assertEquals("idUser9", Ticket6.getUser().getId());
-//
-//        Ticket Ticket7 = this.safetyActivities4Covid19.assignSeat("ACT-1102");
-//        Assert.assertEquals(7, Ticket7.getSeat());
-//        Assert.assertEquals("idUser10", Ticket7.getUser().getId());
+        Assert.assertEquals(10, this.safetyActivities4Covid19.numUsers());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numOrganizations());
+        Assert.assertEquals(5, this.safetyActivities4Covid19.numRecords() );
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numPendingRecords() );
+        Assert.assertEquals(1, this.safetyActivities4Covid19.numRejectedRecords() );
+        Assert.assertEquals(3, this.safetyActivities4Covid19.numActivities());
+        Assert.assertEquals(3, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
+        //
+
+        this.safetyActivities4Covid19.createTicket("idUser8", "ACT-1102");
+        Assert.assertEquals(2, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
+
+        this.safetyActivities4Covid19.createTicket("idUser9", "ACT-1102");
+        Assert.assertEquals(1, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
+
+        this.safetyActivities4Covid19.createTicket("idUser10", "ACT-1102");
+        Assert.assertEquals(0, this.safetyActivities4Covid19.availabilityOfTickets("ACT-1102"));
+
+        Ticket Ticket5 = this.safetyActivities4Covid19.assignSeat("ACT-1102");
+
+        Assert.assertEquals(5, Ticket5.getSeat());
+        Assert.assertEquals("idUser8", Ticket5.getUser().getId());
+
+
+        Ticket Ticket6 = this.safetyActivities4Covid19.assignSeat("ACT-1102");
+        Assert.assertEquals(6, Ticket6.getSeat());
+        Assert.assertEquals("idUser9", Ticket6.getUser().getId());
+
+        Ticket Ticket7 = this.safetyActivities4Covid19.assignSeat("ACT-1102");
+        Assert.assertEquals(7, Ticket7.getSeat());
+        Assert.assertEquals("idUser10", Ticket7.getUser().getId());
 
 
     }

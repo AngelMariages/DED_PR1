@@ -1,5 +1,8 @@
 package uoc.ded.practica.model;
 
+import uoc.ei.tads.Iterador;
+import uoc.ei.tads.LlistaEncadenada;
+
 import java.time.LocalDate;
 
 public class User {
@@ -8,6 +11,7 @@ public class User {
     private String surname;
     private LocalDate birthdate;
     private boolean covidCertificate;
+    private final LlistaEncadenada<Activity> attendedActivities = new LlistaEncadenada<>();
 
     public User(String userId, String name, String surname, LocalDate birthdate, boolean covidCertificate) {
         this.userId = userId;
@@ -24,7 +28,7 @@ public class User {
         this.covidCertificate = covidCertificate;
     }
 
-    public String getUserId() {
+    public String getId() {
         return userId;
     }
 
@@ -42,5 +46,25 @@ public class User {
 
     public boolean hasCovidCertificate() {
         return covidCertificate;
+    }
+
+    public void attendActivity(Activity activity) {
+        attendedActivities.afegirAlFinal(activity);
+    }
+
+    public Iterador<Activity> getAttendedActivities() {
+        return attendedActivities.elements();
+    }
+
+    public int numAttendedActivities() {
+        int count = 0;
+
+        Iterador<Activity> elements = attendedActivities.elements();
+        while (elements.hiHaSeguent()) {
+            elements.seguent();
+            count++;
+        }
+
+        return count;
     }
 }

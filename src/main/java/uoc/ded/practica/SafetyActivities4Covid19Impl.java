@@ -1,5 +1,6 @@
 package uoc.ded.practica;
 
+import java.io.NotActiveException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
@@ -110,17 +111,42 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
             Activity activity = record.createActivity();
 
             activities.afegir(activity.getActId(), activity);
+
+            Organization organization = getOrganization(record.getOrganizationId());
+
+            organization.addActivity(activity);
         }
     }
 
     @Override
     public void createTicket(String userId, String actId) throws UserNotFoundException, ActivityNotFoundException, LimitExceededException {
+        User user = Optional.ofNullable(getUser(userId))
+                .orElseThrow(() -> new UserNotFoundException("User with id " + userId + " not found."));
 
+        if (!activities.hiEs(actId)) {
+            throw new ActivityNotFoundException("Activity with id " + actId + " not found.");
+        }
+
+        Activity activity = getActivity(actId);
+
+        if (activity.availableTickets() <= 0) {
+            throw new LimitExceededException("No more tickets available");
+        }
+
+        activity.enqueueATicket(new Ticket(user));
+
+        user.attendActivity(activity);
     }
 
     @Override
     public Ticket assignSeat(String actId) throws ActivityNotFoundException {
-        return null;
+        if (!activities.hiEs(actId)) {
+            throw new ActivityNotFoundException("Activity with id " + actId + " not found.");
+        }
+
+        Activity activity = getActivity(actId);
+
+        return activity.pickATicket();
     }
 
     @Override
@@ -150,17 +176,34 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public Iterador<Activity> getAllActivities() throws NoActivitiesException {
+        if (activities.estaBuit()) {
+            throw new NoActivitiesException("No activities found");
+        }
+
         return activities.elements();
     }
 
     @Override
     public Iterador<Activity> getActivitiesByOrganization(int organizationId) throws NoActivitiesException {
-        return null;
+        Organization organization = getOrganization(organizationId);
+
+        if (organization == null) {
+            throw new NoActivitiesException("No organization found with id " + organizationId);
+        }
+
+        if (organization.getNumActivities() == 0) {
+            throw new NoActivitiesException("No activities found for org with id " + organizationId);
+        }
+
+        return organization.getOrgActivities();
     }
 
     @Override
     public Iterador<Activity> getActivitiesByUser(String userId) throws NoActivitiesException {
-        return null;
+        User user = Optional.ofNullable(getUser(userId))
+                .orElseThrow(() -> new NoActivitiesException("No user found with id " + userId));
+
+        return user.getAttendedActivities();
     }
 
     @Override
@@ -170,7 +213,7 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
             User user = users[i];
 
             // Get the user matching the userId
-            if (user.getUserId().equals(userId)) {
+            if (user.getId().equals(userId)) {
                 return user;
             }
         }
@@ -249,16 +292,24 @@ public class SafetyActivities4Covid19Impl implements SafetyActivities4Covid19 {
 
     @Override
     public int numActivitiesByOrganization(int organizationId) {
-        return 0;
+        Organization organization = getOrganization(organizationId);
+
+        return organization.getNumActivities();
     }
 
     @Override
     public Activity getActivity(String actId) {
-        return null;
+        return activities.consultar(actId);
     }
 
     @Override
     public int availabilityOfTickets(String actId) {
-        return 0;
+        if (!activities.hiEs(actId)) {
+            return 0;
+        }
+
+        Activity activity = getActivity(actId);
+
+        return activity.availableTickets();
     }
 }
